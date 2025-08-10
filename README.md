@@ -1,2 +1,2 @@
-# LandT
-LandT html-css project
+# html project
+html-css project
