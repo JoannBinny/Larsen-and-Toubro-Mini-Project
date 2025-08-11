@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Delicious Recipes Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header>
+    <h1>Delicious Recipes</h1>
+    <p>Inspiring home cooks with easy, tasty recipes for every meal!</p>
+  </header>
+
+  <nav>
+    <a href="#featured" class="active">Featured</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <main>
+    <section class="section" id="featured">
+      <h2 class="section-title">Breakfast</h2>
+      <div class="recipes-grid">
+        <a class="recipe-card" href="#modal-pancakes">
+          <img src="images/image_1.jpg" alt="Fluffy Pancakes">
+          <div class="recipe-card-content">
+            <h3>Fluffy Pancakes</h3>
+            <p>Classic, light, and fluffy pancakes for a perfect breakfast.</p>
+            <span class="view-btn">View Recipe</span>
+          </div>
+        </a>
+        <a class="recipe-card" href="#modal-muffins">
+          <img src="images/image_2.jpg" alt="Savory Breakfast Muffins">
+          <div class="recipe-card-content">
+            <h3>Savory Breakfast Muffins</h3>
+            <p>Cheesy, veggie-packed muffins for a grab-and-go breakfast.</p>
+            <span class="view-btn">View Recipe</span>
+          </div>
+        </a>
+        <a class="recipe-card" href="#modal-oats">
+          <img src="images/image_3.jpg" alt="Basic Overnight Oats">
+          <div class="recipe-card-content">
+            <h3>Basic Overnight Oats</h3>
+            <p>Healthy, easy, and customizable overnight oats.</p>
+            <span class="view-btn">View Recipe</span>
+          </div>
+        </a>
+      </div>
+
+      <h2 class="section-title">Brunch</h2>
+      <div class="recipes-grid">
+        <a class="recipe-card" href="#modal-caesar">
+          <img src="images/image_4.jpg" alt="Chicken Caesar Wrap">
+          <div class="recipe-card-content">
+            <h3>Chicken Caesar Wrap</h3>
+            <p>A fresh, protein-packed wrap for brunch or lunch.</p>
+            <span class="view-btn">View Recipe</span>
+          </div>
+        </a>
+        <a class="recipe-card" href="#modal-caprese">
+          <img src="images/image_5.jpg" alt="Caprese Grilled Cheese Sandwich">
+          <div class="recipe-card-content">
+            <h3>Caprese Grilled Cheese Sandwich</h3>
+            <p>A melty, Italian-inspired grilled cheese with tomato and basil.</p>
+            <span class="view-btn">View Recipe</span>
+          </div>
+        </a>
+        <a class="recipe-card" href="#modal-hummus">
+          <img src="images/image_6.jpg" alt="Veggie &amp; Hummus Grain Bowl">
+          <div class="recipe-card-content">
+            <h3>Veggie &amp; Hummus Grain Bowl</h3>
+            <p>A nourishing bowl with grains, veggies, and creamy hummus.</p>
+            <span class="view-btn">View Recipe</span>
+          </div>
+        </a>
+      </div>
+
+      <h2 class="section-title">Lunch</h2>
+      <div class="recipes-grid">
+        <a class="recipe-card" href="#modal-paneer">
+          <img src="images/image_7.jpg" alt="Paneer Butter Masala with Naan">
+          <div class="recipe-card-content">
+            <h3>Paneer Butter Masala with Naan</h3>
+            <p>Rich, creamy Indian curry with soft paneer and naan.</p>
+            <span class="view-btn">View Recipe</span>
+          </div>
+        </a>
+        <a class="recipe-card" href="#modal-fajitas">
+          <img src="images/image_8.jpg" alt="Chicken Fajitas">
+          <div class="recipe-card-content">
+            <h3>Chicken Fajitas</h3>
+            <p>Sizzling chicken fajitas with peppers and onions.</p>
+            <span class="view-btn">View Recipe</span>
+          </div>
+        </a>
+        <a class="recipe-card" href="#modal-pasta">
+          <img src="images/image_9.jpg" alt="Caprese Pasta Salad">
+          <div class="recipe-card-content">
+            <h3>Caprese Pasta Salad</h3>
+            <p>A fresh, Italian-style pasta salad with mozzarella and basil.</p>
+            <span class="view-btn">View Recipe</span>
+          </div>
+        </a>
+      </div>
+
+      <h2 class="section-title">Snack</h2>
+      <div class="recipes-grid">
+        <a class="recipe-card" href="#modal-samosa">
+          <img src="images/image_10.jpg" alt="Samosa Bites">
+          <div class="recipe-card-content">
+            <h3>Samosa Bites</h3>
+            <p>Mini samosas with spiced potato and pea filling.</p>
+            <span class="view-btn">View Recipe</span>
+          </div>
+        </a>
+        <a class="recipe-card" href="#modal-chai">
+          <img src="images/image_11.jpg" alt="Masala Chai">
+          <div class="recipe-card-content">
+            <h3>Masala Chai</h3>
+            <p>Aromatic Indian tea with spices and milk.</p>
+            <span class="view-btn">View Recipe</span>
+          </div>
+        </a>
+        <a class="recipe-card" href="#modal-bhelpuri">
+          <img src="images/image_12.jpg" alt="Bhel Puri">
+          <div class="recipe-card-content">
+            <h3>Bhel Puri</h3>
+            <p>Crunchy, tangy Indian street snack with puffed rice.</p>
+            <span class="view-btn">View Recipe</span>
+          </div>
+        </a>
+      </div>
+
+      <h2 class="section-title">Dinner</h2>
+      <div class="recipes-grid">
+        <a class="recipe-card" href="#modal-garlicchicken">
+          <img src="images/image_13.jpg" alt="Garlic Butter Lemon Chicken">
+          <div class="recipe-card-content">
+            <h3>Garlic Butter Lemon Chicken</h3>
+            <p>Juicy chicken breasts in a garlic butter lemon sauce.</p>
+            <span class="view-btn">View Recipe</span>
+          </div>
+        </a>
+        <a class="recipe-card" href="#modal-mushroompasta">
+          <img src="images/image_14.jpg" alt="Creamy Mushroom Pasta">
+          <div class="recipe-card-content">
+            <h3>Creamy Mushroom Pasta</h3>
+            <p>Rich, creamy pasta with mushrooms and herbs.</p>
+            <span class="view-btn">View Recipe</span>
+          </div>
+        </a>
+        <a class="recipe-card" href="#modal-stirfry">
+          <img src="images/image_15.jpg" alt="Vegetable Stir-Fry">
+          <div class="recipe-card-content">
+            <h3>Vegetable Stir-Fry</h3>
+            <p>Colorful veggies stir-fried in a savory sauce.</p>
+            <span class="view-btn">View Recipe</span>
+          </div>
+        </a>
+      </div>
+
+      <h2 class="section-title">Dessert</h2>
+      <div class="recipes-grid">
+        <a class="recipe-card" href="#modal-gulabjamun">
+          <img src="images/image_16.jpg" alt="Gulab Jamun">
+          <div class="recipe-card-content">
+            <h3>Gulab Jamun</h3>
+            <p>Soft, syrup-soaked Indian milk balls for dessert.</p>
+            <span class="view-btn">View Recipe</span>
+          </div>
+        </a>
+        <a class="recipe-card" href="#modal-mousse">
+          <img src="images/image_17.jpg" alt="Chocolate Mousse">
+          <div class="recipe-card-content">
+            <h3>Chocolate Mousse</h3>
+            <p>Decadent, airy chocolate mousse for a sweet finish.</p>
+            <span class="view-btn">View Recipe</span>
+          </div>
+        </a>
+        <a class="recipe-card" href="#modal-brownies">
+          <img src="images/image_18.jpg" alt="Classic Brownies">
+          <div class="recipe-card-content">
+            <h3>Classic Brownies</h3>
+            <p>Fudgy, chocolatey brownies for dessert lovers.</p>
+            <span class="view-btn">View Recipe</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <h2 class="section-title plain">About Us</h2>
+      <p class="about-text">
+        At Delicious Recipes, we believe that cooking is for everyone. Our mission is to inspire and empower home cooks with a variety of recipes, tips, and techniques that make meal preparation both fun and rewarding.
+        <br><br>
+        From quick weeknight dinners to decadent desserts, we test and share recipes that deliver great flavor without unnecessary complexity. Join us on a culinary adventure and discover dishes you’ll love to cook and share.
+      </p>
+    </section>
+
+    <section class="section" id="contact">
+      <h2 class="section-title plain">Contact Us</h2>
+      <form class="contact-form" autocomplete="off">
+        <label for="name">Name:</label>
+        <input id="name" name="name" type="text" required>
+        <label for="email">Email:</label>
+        <input id="email" name="email" type="email" required>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        <button type="submit" class="view-btn full">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Modals -->
+  <div class="modal" id="modal-pancakes">
+    <div class="modal-content">
+      <a href="#featured" class="close-modal" aria-label="Close">&times;</a>
+      <h2>Fluffy Pancakes</h2>
+      <img src="images/image_1.jpg" alt="Fluffy Pancakes">
+      <h3>Ingredients</h3>
+      <ul>
+        <li>1 cup all-purpose flour</li>
+        <li>2 tablespoons sugar</li>
+        <li>1 tablespoon baking powder</li>
+        <li>1/2 teaspoon salt</li>
+        <li>1 cup milk (any kind you like)</li>
+        <li>1 large egg</li>
+        <li>2 tablespoons melted butter (plus extra for cooking)</li>
+        <li>1 teaspoon vanilla extract (optional but sooo good)</li>
+      </ul>
+      <h3>Instructions</h3>
+      <ol>
+        <li>Mix dry stuff: In a big bowl, whisk together the flour, sugar, baking powder, and salt.</li>
+        <li>Mix wet stuff: In another bowl, beat the egg with milk, melted butter, and vanilla extract.</li>
+        <li>Combine: Pour the wet mix into the dry mix and stir gently until just combined. Don’t overmix — it’s okay if it’s a bit lumpy!</li>
+        <li>Heat the pan: Warm a non-stick skillet or griddle over medium heat. Add a little butter to coat.</li>
+        <li>Cook pancakes: Pour about 1/4 cup batter per pancake onto the pan. Cook until bubbles appear on the surface and edges look set, about 2-3 minutes. Flip and cook another 1-2 minutes until golden brown.</li>
+        <li>Serve it up: Stack ’em high, top with syrup, fresh fruits, chocolate chips, or whatever vibes you want!</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-muffins">
+    <div class="modal-content">
+      <a href="#featured" class="close-modal" aria-label="Close">&times;</a>
+      <h2>Savory Breakfast Muffins</h2>
+      <img src="images/image_2.jpg" alt="Savory Breakfast Muffins">
+      <h3>Ingredients</h3>
+      <ul>
+        <li>2 cups all-purpose flour</li>
+        <li>1 tablespoon baking powder</li>
+        <li>1/2 teaspoon salt</li>
+        <li>1/2 teaspoon black pepper</li>
+        <li>1 cup shredded cheese (cheddar or your fave)</li>
+        <li>1/2 cup cooked and chopped bacon or sausage (optional)</li>
+        <li>1/2 cup chopped veggies (like bell peppers, spinach, or tomatoes)</li>
+        <li>2 large eggs</li>
+        <li>1 cup milk</li>
+        <li>1/4 cup melted butter or oil</li>
+      </ul>
+      <h3>Instructions</h3>
+      <ol>
+        <li>Preheat oven to 375°F (190°C). Grease or line a muffin tin.</li>
+        <li>Mix dry: In a big bowl, whisk flour, baking powder, salt, and pepper.</li>
+        <li>Add cheese, meat & veggies: Toss in cheese, cooked bacon/sausage, and veggies. Mix it around.</li>
+        <li>Mix wet: In another bowl, beat eggs, milk, and melted butter.</li>
+        <li>Combine: Pour wet into dry, mix gently just till combined.</li>
+        <li>Fill muffin tin: Spoon batter evenly into 12 muffin cups.</li>
+        <li>Bake: 18–22 minutes or until tops are golden and a toothpick comes out clean.</li>
+        <li>Cool & chow: Let cool for 5 mins, then devour warm or pack ’em for on-the-go!</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-oats">
+    <div class="modal-content">
+      <a href="#featured" class="close-modal" aria-label="Close">&times;</a>
+      <h2>Basic Overnight Oats</h2>
+      <img src="images/image_3.jpg" alt="Basic Overnight Oats">
+      <h3>Ingredients</h3>
+      <ul>
+        <li>1/2 cup rolled oats</li>
+        <li>1/2 cup milk (dairy or plant-based)</li>
+        <li>1/4 cup yogurt (optional, for creaminess)</li>
+        <li>1 tablespoon chia seeds (optional)</li>
+        <li>1 teaspoon honey or maple syrup (or to taste)</li>
+        <li>1/2 teaspoon vanilla extract (optional)</li>
+      </ul>
+      <h3>Instructions</h3>
+      <ol>
+        <li>In a jar or bowl, mix oats, milk, yogurt, chia seeds, sweetener, and vanilla.</li>
+        <li>Stir well, cover with a lid or plastic wrap.</li>
+        <li>Refrigerate overnight (or at least 4 hours).</li>
+        <li>Next morning, stir, top, and enjoy!</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-caesar">
+    <div class="modal-content">
+      <a href="#featured" class="close-modal" aria-label="Close">&times;</a>
+      <h2>Chicken Caesar Wrap</h2>
+      <img src="images/image_4.jpg" alt="Chicken Caesar Wrap">
+      <h3>Ingredients</h3>
+      <ul>
+        <li>Grilled chicken breast, sliced</li>
+        <li>Romaine lettuce, chopped</li>
+        <li>Caesar dressing</li>
+        <li>Parmesan cheese</li>
+        <li>Large tortilla wraps</li>
+      </ul>
+      <h3>Instructions</h3>
+      <ol>
+        <li>Toss chicken, lettuce, dressing, and parmesan in a bowl.</li>
+        <li>Spoon onto a tortilla, roll tight, slice in half.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-caprese">
+    <div class="modal-content">
+      <a href="#featured" class="close-modal" aria-label="Close">&times;</a>
+      <h2>Caprese Grilled Cheese Sandwich</h2>
+      <img src="images/image_5.jpg" alt="Caprese Grilled Cheese Sandwich">
+      <h3>Ingredients</h3>
+      <ul>
+        <li>Bread slices (sourdough works great)</li>
+        <li>Fresh mozzarella slices</li>
+        <li>Tomato slices</li>
+        <li>Fresh basil leaves</li>
+        <li>Balsamic glaze</li>
+        <li>Butter</li>
+      </ul>
+      <h3>Instructions</h3>
+      <ol>
+        <li>Butter one side of each bread slice.</li>
+        <li>Layer mozzarella, tomato, basil on the unbuttered side; drizzle glaze.</li>
+        <li>Close and grill on medium heat until golden and melty.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-hummus">
+    <div class="modal-content">
+      <a href="#featured" class="close-modal" aria-label="Close">&times;</a>
+      <h2>Veggie &amp; Hummus Grain Bowl</h2>
+      <img src="images/image_6.jpg" alt="Veggie &amp; Hummus Grain Bowl">
+      <h3>Ingredients</h3>
+      <ul>
+        <li>Cooked quinoa or brown rice</li>
+        <li>Hummus</li>
+        <li>Roasted or fresh veggies</li>
+        <li>Feta (optional)</li>
+        <li>Olive oil & lemon juice</li>
+      </ul>
+      <h3>Instructions</h3>
+      <ol>
+        <li>Base: quinoa/rice. Add a big scoop of hummus.</li>
+        <li>Top with veggies, feta, oil, lemon. Done.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-paneer">
+    <div class="modal-content">
+      <a href="#featured" class="close-modal" aria-label="Close">&times;</a>
+      <h2>Paneer Butter Masala with Naan</h2>
+      <img src="images/image_7.jpg" alt="Paneer Butter Masala with Naan">
+      <h3>Ingredients</h3>
+      <ul>
+        <li>250g paneer, cubed</li>
+        <li>2 tbsp butter + 1 tbsp oil</li>
+        <li>1 large onion, finely chopped</li>
+        <li>2 tomatoes, pureed</li>
+        <li>1 tbsp ginger-garlic paste</li>
+        <li>1/2 cup cream</li>
+        <li>Spices: chili, garam masala, turmeric, coriander, salt</li>
+        <li>Cilantro for garnish</li>
+      </ul>
+      <h3>Instructions</h3>
+      <ol>
+        <li>Sauté onions, add GG paste.</li>
+        <li>Add tomato puree; cook till oil separates.</li>
+        <li>Spices + paneer. Coat gently.</li>
+        <li>Cream + garam masala; simmer 5 mins.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-fajitas">
+    <div class="modal-content">
+      <a href="#featured" class="close-modal" aria-label="Close">&times;</a>
+      <h2>Chicken Fajitas</h2>
+      <img src="images/image_8.jpg" alt="Chicken Fajitas">
+      <h3>Ingredients</h3>
+      <ul>
+        <li>Chicken strips, bell pepper, onion</li>
+        <li>Olive oil, chili, cumin, paprika, S&amp;P</li>
+        <li>Tortillas + toppings</li>
+      </ul>
+      <h3>Instructions</h3>
+      <ol>
+        <li>Spice chicken; cook 6–7 mins. Remove.</li>
+        <li>Sauté veg; return chicken; heat through.</li>
+        <li>Serve in tortillas with toppings.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-pasta">
+    <div class="modal-content">
+      <a href="#featured" class="close-modal" aria-label="Close">&times;</a>
+      <h2>Caprese Pasta Salad</h2>
+      <img src="images/image_9.jpg" alt="Caprese Pasta Salad">
+      <h3>Ingredients</h3>
+      <ul>
+        <li>Cooked pasta</li>
+        <li>Cherry tomatoes, mozzarella, basil</li>
+        <li>Olive oil, balsamic, S&amp;P</li>
+      </ul>
+      <h3>Instructions</h3>
+      <ol>
+        <li>Toss everything gently.</li>
+        <li>Serve chilled or room temp.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-samosa">
+    <div class="modal-content">
+      <a href="#featured" class="close-modal" aria-label="Close">&times;</a>
+      <h2>Samosa Bites</h2>
+      <img src="images/image_10.jpg" alt="Samosa Bites">
+      <h3>Ingredients</h3>
+      <ul>
+        <li>Potatoes, peas, cumin</li>
+        <li>Turmeric, coriander, chili, garam masala, salt</li>
+        <li>Pastry sheets, oil</li>
+      </ul>
+      <h3>Instructions</h3>
+      <ol>
+        <li>Cook spiced potato-pea filling.</li>
+        <li>Fold into mini triangles; seal.</li>
+        <li>Fry till golden. Drain.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-chai">
+    <div class="modal-content">
+      <a href="#featured" class="close-modal" aria-label="Close">&times;</a>
+      <h2>Masala Chai</h2>
+      <img src="images/image_11.jpg" alt="Masala Chai">
+      <h3>Ingredients</h3>
+      <ul>
+        <li>Water, milk, tea</li>
+        <li>Cardamom, cinnamon, cloves, ginger</li>
+        <li>Sugar to taste</li>
+      </ul>
+      <h3>Instructions</h3>
+      <ol>
+        <li>Boil spices + water 5 mins.</li>
+        <li>Add tea; simmer.</li>
+        <li>Add milk + sugar; bring to boil. Strain.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-bhelpuri">
+    <div class="modal-content">
+      <a href="#featured" class="close-modal" aria-label="Close">&times;</a>
+      <h2>Bhel Puri</h2>
+      <img src="images/image_12.jpg" alt="Bhel Puri">
+      <h3>Ingredients</h3>
+      <ul>
+        <li>Puffed rice, sev</li>
+        <li>Onion, tomato, boiled potato</li>
+        <li>Chutneys, lemon, chaat masala, salt</li>
+      </ul>
+      <h3>Instructions</h3>
+      <ol>
+        <li>Mix everything gently.</li>
+        <li>Serve immediately for crunch.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-garlicchicken">
+    <div class="modal-content">
+      <a href="#featured" class="close-modal" aria-label="Close">&times;</a>
+      <h2>Garlic Butter Lemon Chicken</h2>
+      <img src="images/image_13.jpg" alt="Garlic Butter Lemon Chicken">
+      <h3>Ingredients</h3>
+      <ul>
+        <li>Chicken breasts, butter, garlic</li>
+        <li>Lemon juice, paprika, S&amp;P</li>
+      </ul>
+      <h3>Instructions</h3>
+      <ol>
+        <li>Season chicken; sear in butter with garlic.</li>
+        <li>Add lemon; simmer 2–3 mins.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-mushroompasta">
+    <div class="modal-content">
+      <a href="#featured" class="close-modal" aria-label="Close">&times;</a>
+      <h2>Creamy Mushroom Pasta</h2>
+      <img src="images/image_14.jpg" alt="Creamy Mushroom Pasta">
+      <h3>Ingredients</h3>
+      <ul>
+        <li>Pasta, mushrooms, cream</li>
+        <li>Butter, garlic, salt, pepper, parsley</li>
+      </ul>
+      <h3>Instructions</h3>
+      <ol>
+        <li>Cook pasta.</li>
+        <li>Sauté garlic + mushrooms in butter.</li>
+        <li>Add cream, season; toss pasta; garnish.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-stirfry">
+    <div class="modal-content">
+      <a href="#featured" class="close-modal" aria-label="Close">&times;</a>
+      <h2>Vegetable Stir-Fry</h2>
+      <img src="images/image_15.jpg" alt="Vegetable Stir-Fry">
+      <h3>Ingredients</h3>
+      <ul>
+        <li>Broccoli, carrot, bell pepper</li>
+        <li>Soy sauce, sesame oil, ginger</li>
+      </ul>
+      <h3>Instructions</h3>
+      <ol>
+        <li>Heat oil; sauté ginger.</li>
+        <li>Add veggies; stir-fry 5–6 mins.</li>
+        <li>Finish with soy sauce.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-gulabjamun">
+    <div class="modal-content">
+      <a href="#featured" class="close-modal" aria-label="Close">&times;</a>
+      <h2>Gulab Jamun</h2>
+      <img src="images/image_16.jpg" alt="Gulab Jamun">
+      <h3>Ingredients</h3>
+      <ul>
+        <li>Milk powder, flour, ghee, milk</li>
+        <li>Oil/ghee for frying</li>
+        <li>Syrup: sugar, water, cardamom, saffron, rose water</li>
+      </ul>
+      <h3>Instructions</h3>
+      <ol>
+        <li>Knead soft dough; shape smooth balls.</li>
+        <li>Make syrup; keep warm.</li>
+        <li>Fry on medium till golden; soak 30 mins.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-mousse">
+    <div class="modal-content">
+      <a href="#featured" class="close-modal" aria-label="Close">&times;</a>
+      <h2>Chocolate Mousse</h2>
+      <img src="images/image_17.jpg" alt="Chocolate Mousse">
+      <h3>Ingredients</h3>
+      <ul>
+        <li>Dark chocolate, eggs, sugar, cream</li>
+      </ul>
+      <h3>Instructions</h3>
+      <ol>
+        <li>Melt chocolate; cool slightly. Yolks in.</li>
+        <li>Whip whites with sugar; whip cream.</li>
+        <li>Fold cream into chocolate; fold whites; chill 2–3 hrs.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-brownies">
+    <div class="modal-content">
+      <a href="#featured" class="close-modal" aria-label="Close">&times;</a>
+      <h2>Classic Brownies</h2>
+      <img src="images/image_18.jpg" alt="Classic Brownies">
+      <h3>Ingredients</h3>
+      <ul>
+        <li>Butter, sugar, eggs, vanilla</li>
+        <li>Cocoa, flour, salt, baking powder</li>
+      </ul>
+      <h3>Instructions</h3>
+      <ol>
+        <li>Mix wet; add dry; combine.</li>
+        <li>Bake 20–25 mins @ 175°C. Cool, slice.</li>
+      </ol>
+    </div>
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,276 @@
+:root {
+  --primary: #ffb385;
+  --primary-dark: #ff7e67;
+  --secondary: #7ed6df;
+  --bg: #fdf6f0;
+  --card-bg: #fff;
+  --text: #2d1e2f;
+  --muted: #8d7a91;
+  --shadow: 0 8px 32px rgba(255,179,133,.10);
+  --radius: 20px;
+  --transition: .25s cubic-bezier(.4,2,.6,1);
+}
+
+/* base */
+html, body {
+  height: 100%;
+  margin: 0;
+  background: linear-gradient(120deg, var(--bg) 60%, #ffe5d0 100%);
+  font-family: 'Roboto', Arial, sans-serif;
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* header */
+header {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: #fff;
+  padding: 2.5rem 0 1.5rem 0;
+  text-align: center;
+  border-radius: 0 0 40px 40px;
+  box-shadow: 0 4px 24px rgba(255,179,133,.10);
+}
+header h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 900;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 8px rgba(255,179,133,.18);
+}
+header p {
+  font-size: 1.2rem;
+  color: #fffbe9;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* nav */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0 1.5rem 0;
+}
+nav a {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--primary-dark);
+  text-decoration: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 30px;
+  background: #fff6e9;
+  box-shadow: 0 2px 8px rgba(255,179,133,.08);
+  transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+}
+nav a.active, nav a:hover {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(255,179,133,.18);
+}
+
+/* layout */
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem 1rem;
+}
+.section {
+  margin-bottom: 3rem;
+  animation: fadeInUp .7s cubic-bezier(.4,2,.6,1);
+}
+.section-title {
+  font-family:'Montserrat',sans-serif;
+  font-size:2rem;
+  color:var(--primary-dark);
+  margin: 0 0 1.2rem 0;
+}
+.section-title + .recipes-grid { margin-top: 1.5rem; }
+.section-title.plain { margin-bottom: 1rem; }
+
+.about-text {
+  max-width: 600px;
+  margin: 0 auto 1.5rem auto;
+}
+
+/* cards */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: none; }
+}
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+.recipe-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), box-shadow var(--transition);
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+}
+.recipe-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 16px 40px rgba(255,126,103,.18);
+}
+.recipe-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 2px solid var(--primary);
+}
+.recipe-card-content {
+  padding: 1.2rem 1.2rem 1.5rem 1.2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.recipe-card h3,
+.recipe-card:visited h3,
+.recipe-card:focus h3,
+.recipe-card:hover h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--primary-dark);
+  font-weight: 900;
+  text-decoration: none !important;
+}
+.recipe-card p {
+  color: var(--muted);
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+}
+.view-btn {
+  margin-top: auto;
+  align-self: flex-end;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 0.5rem 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(255,179,133,.10);
+  transition: background var(--transition), box-shadow var(--transition);
+}
+.view-btn:hover {
+  background: linear-gradient(90deg, var(--primary-dark), var(--secondary));
+  box-shadow: 0 4px 16px rgba(255,179,133,.18);
+}
+.view-btn.full { width: 100%; }
+
+/* contact form */
+.contact-form {
+  max-width:400px;
+  margin:0 auto;
+  text-align:left;
+  display: grid;
+  gap: .6rem;
+}
+.contact-form input,
+.contact-form textarea {
+  width:100%;
+  padding:.6rem;
+  border-radius:8px;
+  border:1px solid #eee;
+  font: inherit;
+}
+
+/* modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(45,30,47,0.18);
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn .3s;
+  overflow-y: auto;
+}
+.modal:target { display: flex; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal-content {
+  background: #fff;
+  border-radius: 24px;
+  max-width: 540px;
+  width: 95vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2.5rem 2rem 2rem 2rem;
+  box-shadow: 0 8px 40px rgba(45,30,47,0.18);
+  position: relative;
+  animation: fadeInUp .5s cubic-bezier(.4,2,.6,1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.modal-content h2 {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--primary-dark);
+  margin-top: 0;
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+}
+.modal-content img {
+  width: 100%;
+  border-radius: 16px;
+  margin-bottom: 1rem;
+  max-height: 220px;
+  object-fit: cover;
+  box-shadow: 0 2px 12px rgba(45,30,47,0.08);
+}
+.modal-content h3 {
+  color: var(--primary-dark);
+  margin-bottom: 0.3rem;
+  margin-top: 0.5rem;
+  font-size: 1.15rem;
+}
+.modal-content ul, .modal-content ol {
+  text-align: left;
+  margin: 0.5rem 0 1.2rem 1.5rem;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.close-modal {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  font-size: 2rem;
+  color: var(--primary-dark);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 900;
+  transition: color var(--transition);
+  z-index: 10;
+  text-decoration: none;
+  line-height: 1;
+}
+.close-modal:hover { color: var(--primary); }
+
+/* responsive */
+@media (max-width: 700px) {
+  header h1 { font-size: 2rem; }
+  .recipes-grid { grid-template-columns: 1fr; }
+  .modal-content {
+    padding: 1.2rem 0.5rem;
+    max-width: 98vw;
+    max-height: 96vh;
+  }
+}
