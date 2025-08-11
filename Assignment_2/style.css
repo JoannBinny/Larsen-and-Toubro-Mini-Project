@@ -1,0 +1,270 @@
+body {
+      background: linear-gradient(120deg, #fffbe7 60%, #ffe3c0 100%);
+      font-family: 'Roboto', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .menu-container {
+      max-width: 860px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 32px rgba(198,165,109,0.11);
+      padding: 36px 28px;
+    }
+    header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.8rem;
+      color: #e47d44;
+      text-align: center;
+      letter-spacing: 2px;
+      margin: 0 0 12px;
+    }
+    .filters {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      font-family: 'Montserrat',sans-serif;
+      background: #ffe5b5;
+      color: #ab5729;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 22px;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(228,125,68,0.09);
+      transition: background 0.2s, color 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: #e47d44;
+      color: #fff;
+    }
+    .menu-section {
+      margin-bottom: 36px;
+    }
+    .section-title {
+      font-family: 'Montserrat',sans-serif;
+      font-size: 1.6rem;
+      color: #71411a;
+      border-bottom: 2.5px solid #ffe09e;
+      padding-bottom: 7px;
+      margin: 22px 0 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::before {
+      content: "🍽";
+      font-size: 1.3rem;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap: 22px;
+    }
+    .dish-card {
+      background: linear-gradient(120deg,#fffbe7 80%,#ffe5b5 100%);
+      border-radius: 14px;
+      box-shadow: 0 2px 10px rgba(239,186,87,0.06);
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.18s;
+      cursor: pointer;
+    }
+    .dish-card:hover {
+      box-shadow: 0 6px 24px rgba(238,145,58,0.12);
+    }
+    .dish-name {
+      font-family: 'Montserrat',sans-serif;
+      font-size: 1.18rem;
+      font-weight: 600;
+      color: #b24911;
+      margin-bottom: 3px;
+    }
+    .dish-desc {
+      font-size: 0.98rem;
+      color: #805d2d;
+      margin-bottom: 8px;
+      min-height: 44px;
+    }
+    .dish-price {
+      font-size: 1.02rem;
+      color: #de8406;
+      margin-top: auto;
+      font-weight: 600;
+    }
+    .diet-tag {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 4px 11px;
+      font-size: 0.82rem;
+      background: #ffe5b5;
+      color: #38ab62;
+      border-radius: 12px;
+      font-weight: bold;
+      border: 1.5px solid #c2e7c5;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .dish-card.vegan .diet-tag { background: #d8f7df; color: #138a31; border-color: #b5dfbb;}
+    .dish-card.gf .diet-tag { background: #e3f2ff; color: #298bb6; border-color: #b2cee1;}
+    .dish-card.special::after {
+      content: 'Chef\'s Special';
+      position: absolute;
+      left: -40px; top: 16px;
+      transform: rotate(-28deg);
+      background: #e47d44;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      padding: 2px 26px;
+      border-radius: 10px;
+      font-style: italic;
+      letter-spacing: 1px;
+      opacity: 0.9;
+      box-shadow: 1px 2px 8px rgba(232,140,51,0.07);
+    }
+    .divider {
+      width: 100%;
+      text-align: center;
+      font-size: 1.25rem;
+      color: #ffe090;
+      margin: 36px 0 14px;
+      letter-spacing: 2px;
+    }
+    @media (max-width: 640px) {
+      .menu-container {
+        padding: 12px 4px;
+      }
+      header h1 { font-size: 1.48rem; }
+      .section-title { font-size: 1.17rem; }
+      .divider { margin: 22px 0 8px;}
+    }
+
+    /* Modal styles */
+    #dishModal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(3px);
+      align-items: center;
+      justify-content: center;
+    }
+    #dishModalContent {
+      background: #fff;
+      border-radius: 18px;
+      padding: 28px 32px;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      position: relative;
+      font-family: 'Roboto', sans-serif;
+      color: #4b2c09;
+    }
+    #modalCloseBtn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: #de8406;
+      cursor: pointer;
+      font-weight: bold;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    #modalCloseBtn:hover {
+      color: #b24911;
+    }
+    #modalDishName {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.9rem;
+      margin-bottom: 12px;
+      color: #e47d44;
+    }
+    #modalDishDesc {
+      font-size: 1.05rem;
+      margin-bottom: 16px;
+      color: #805d2d;
+    }
+    #modalDishPrice {
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #de8406;
+    }
+/* Price range slider styling */
+.price-filter {
+  text-align: center;
+  margin: 15px 0 30px;
+  font-family: 'Montserrat', sans-serif;
+  color: #b24911;
+}
+.price-filter input[type=range] {
+  -webkit-appearance: none;
+  width: 200px;
+  height: 6px;
+  background: #ffe5b5;
+  border-radius: 5px;
+  outline: none;
+}
+.price-filter input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #e47d44;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Order Now button */
+.order-now-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #e47d44;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  padding: 12px 20px;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  text-decoration: none;
+  transition: background 0.3s;
+  z-index: 999;
+}
+.order-now-btn:hover {
+  background: #b24911;
+}
+
+/* Hover ingredient reveal for dish cards */
+.dish-card .dish-desc {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.dish-card:hover .dish-desc {
+  max-height: 100px;
+}
+
+/* Rotating Chef's Special badge */
+.dish-card.special::after {
+  animation: rotateBadge 6s linear infinite;
+}
+@keyframes rotateBadge {
+  from { transform: rotate(-28deg); }
+  to { transform: rotate(332deg); }
+}

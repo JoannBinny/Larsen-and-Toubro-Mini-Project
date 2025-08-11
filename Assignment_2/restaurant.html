@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Restaurant Menu</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: linear-gradient(120deg, #fffbe7 60%, #ffe3c0 100%);
+      font-family: 'Roboto', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .menu-container {
+      max-width: 860px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 32px rgba(198,165,109,0.11);
+      padding: 36px 28px;
+    }
+    header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.8rem;
+      color: #e47d44;
+      text-align: center;
+      letter-spacing: 2px;
+      margin: 0 0 12px;
+    }
+    .filters {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      font-family: 'Montserrat',sans-serif;
+      background: #ffe5b5;
+      color: #ab5729;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 22px;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(228,125,68,0.09);
+      transition: background 0.2s, color 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: #e47d44;
+      color: #fff;
+    }
+    .menu-section {
+      margin-bottom: 36px;
+    }
+    .section-title {
+      font-family: 'Montserrat',sans-serif;
+      font-size: 1.6rem;
+      color: #71411a;
+      border-bottom: 2.5px solid #ffe09e;
+      padding-bottom: 7px;
+      margin: 22px 0 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::before {
+      content: "🍽";
+      font-size: 1.3rem;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap: 22px;
+    }
+    .dish-card {
+      background: linear-gradient(120deg,#fffbe7 80%,#ffe5b5 100%);
+      border-radius: 14px;
+      box-shadow: 0 2px 10px rgba(239,186,87,0.06);
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.18s;
+      cursor: pointer;
+    }
+    .dish-card:hover {
+      box-shadow: 0 6px 24px rgba(238,145,58,0.12);
+    }
+    .dish-name {
+      font-family: 'Montserrat',sans-serif;
+      font-size: 1.18rem;
+      font-weight: 600;
+      color: #b24911;
+      margin-bottom: 3px;
+    }
+    .dish-desc {
+      font-size: 0.98rem;
+      color: #805d2d;
+      margin-bottom: 8px;
+      min-height: 44px;
+    }
+    .dish-price {
+      font-size: 1.02rem;
+      color: #de8406;
+      margin-top: auto;
+      font-weight: 600;
+    }
+    .diet-tag {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 4px 11px;
+      font-size: 0.82rem;
+      background: #ffe5b5;
+      color: #38ab62;
+      border-radius: 12px;
+      font-weight: bold;
+      border: 1.5px solid #c2e7c5;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .dish-card.vegan .diet-tag { background: #d8f7df; color: #138a31; border-color: #b5dfbb;}
+    .dish-card.gf .diet-tag { background: #e3f2ff; color: #298bb6; border-color: #b2cee1;}
+    .dish-card.special::after {
+      content: 'Chef\'s Special';
+      position: absolute;
+      left: -40px; top: 16px;
+      transform: rotate(-28deg);
+      background: #e47d44;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      padding: 2px 26px;
+      border-radius: 10px;
+      font-style: italic;
+      letter-spacing: 1px;
+      opacity: 0.9;
+      box-shadow: 1px 2px 8px rgba(232,140,51,0.07);
+    }
+    .divider {
+      width: 100%;
+      text-align: center;
+      font-size: 1.25rem;
+      color: #ffe090;
+      margin: 36px 0 14px;
+      letter-spacing: 2px;
+    }
+    @media (max-width: 640px) {
+      .menu-container {
+        padding: 12px 4px;
+      }
+      header h1 { font-size: 1.48rem; }
+      .section-title { font-size: 1.17rem; }
+      .divider { margin: 22px 0 8px;}
+    }
+
+    /* Modal styles */
+    #dishModal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(3px);
+      align-items: center;
+      justify-content: center;
+    }
+    #dishModalContent {
+      background: #fff;
+      border-radius: 18px;
+      padding: 28px 32px;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      position: relative;
+      font-family: 'Roboto', sans-serif;
+      color: #4b2c09;
+    }
+    #modalCloseBtn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: #de8406;
+      cursor: pointer;
+      font-weight: bold;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    #modalCloseBtn:hover {
+      color: #b24911;
+    }
+    #modalDishName {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.9rem;
+      margin-bottom: 12px;
+      color: #e47d44;
+    }
+    #modalDishDesc {
+      font-size: 1.05rem;
+      margin-bottom: 16px;
+      color: #805d2d;
+    }
+    #modalDishPrice {
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #de8406;
+    }
+  </style>
+</head>
+<body>
+  <div class="menu-container">
+    <header>
+      <h1>Sunset Bistro Menu</h1>
+    </header>
+
+    <!-- Filter Buttons -->
+    <div class="filters">
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">Vegan</button>
+      <button class="filter-btn">Gluten-Free</button>
+      <button class="filter-btn">Mains</button>
+      <button class="filter-btn">Desserts</button>
+    </div>
+<div class="price-filter">
+  <label for="priceRange">Price Range:</label>
+  <input type="range" id="priceRange" name="priceRange" min="100" max="500">
+</div>
+
+
+    <!-- Starters -->
+    <div class="menu-section" data-section="starters">
+      <div class="section-title">Starters</div>
+      <div class="menu-grid">
+        <div class="dish-card vegan special" data-name="Grilled Asparagus Salad" data-desc="Tender asparagus, toasted almonds, wild greens, lemon vinaigrette." data-price="₹180">
+          <span class="diet-tag">Vegan</span>
+          <span class="dish-name">Grilled Asparagus Salad</span>
+          <div class="dish-desc">Tender asparagus, toasted almonds, wild greens, lemon vinaigrette.</div>
+          <span class="dish-price">₹180</span>
+        </div>
+        <div class="dish-card gf" data-name="Roasted Tomato Soup" data-desc="Slow-cooked ripe tomatoes, basil oil swirl, served warm." data-price="₹160">
+          <span class="diet-tag">GF</span>
+          <span class="dish-name">Roasted Tomato Soup</span>
+          <div class="dish-desc">Slow-cooked ripe tomatoes, basil oil swirl, served warm.</div>
+          <span class="dish-price">₹160</span>
+        </div>
+        <div class="dish-card" data-name="Sourdough Bruschetta" data-desc="Crispy bread, cherry tomatoes, balsamic glaze, herbed cheese." data-price="₹140">
+          <span class="dish-name">Sourdough Bruschetta</span>
+          <div class="dish-desc">Crispy bread, cherry tomatoes, balsamic glaze, herbed cheese.</div>
+          <span class="dish-price">₹140</span>
+        </div>
+        <div class="dish-card vegan gf" data-name="Stuffed Mushrooms" data-desc="Baked mushrooms filled with spiced lentils and herbs." data-price="₹160">
+          <span class="diet-tag">Vegan</span>
+          <span class="dish-name">Stuffed Mushrooms</span>
+          <div class="dish-desc">Baked mushrooms filled with spiced lentils and herbs.</div>
+          <span class="dish-price">₹160</span>
+        </div>
+        <div class="dish-card vegan" data-name="Spicy Garlic Edamame" data-desc="Blistered soybeans tossed in chili garlic oil." data-price="₹130">
+          <span class="diet-tag">Vegan</span>
+          <span class="dish-name">Spicy Garlic Edamame</span>
+          <div class="dish-desc">Blistered soybeans tossed in chili garlic oil.</div>
+          <span class="dish-price">₹130</span>
+        </div>
+
+        <!-- 5 extra starters -->
+        <div class="dish-card gf" data-name="Crispy Calamari" data-desc="Lightly fried calamari rings with lemon aioli dip." data-price="₹210">
+          <span class="diet-tag">GF</span>
+          <span class="dish-name">Crispy Calamari</span>
+          <div class="dish-desc">Lightly fried calamari rings with lemon aioli dip.</div>
+          <span class="dish-price">₹210</span>
+        </div>
+        <div class="dish-card vegan" data-name="Zucchini Fritters" data-desc="Golden-fried zucchini fritters served with vegan yogurt dip." data-price="₹150">
+          <span class="diet-tag">Vegan</span>
+          <span class="dish-name">Zucchini Fritters</span>
+          <div class="dish-desc">Golden-fried zucchini fritters served with vegan yogurt dip.</div>
+          <span class="dish-price">₹150</span>
+        </div>
+        <div class="dish-card" data-name="Caprese Skewers" data-desc="Mozzarella, cherry tomatoes, basil, and balsamic drizzle." data-price="₹170">
+          <span class="dish-name">Caprese Skewers</span>
+          <div class="dish-desc">Mozzarella, cherry tomatoes, basil, and balsamic drizzle.</div>
+          <span class="dish-price">₹170</span>
+        </div>
+        <div class="dish-card gf" data-name="Shrimp Cocktail" data-desc="Chilled shrimp with spicy cocktail sauce." data-price="₹230">
+          <span class="diet-tag">GF</span>
+          <span class="dish-name">Shrimp Cocktail</span>
+          <div class="dish-desc">Chilled shrimp with spicy cocktail sauce.</div>
+          <span class="dish-price">₹230</span>
+        </div>
+        <div class="dish-card vegan" data-name="Avocado Toast" data-desc="Smashed avocado on toasted rustic bread with chili flakes." data-price="₹140">
+          <span class="diet-tag">Vegan</span>
+          <span class="dish-name">Avocado Toast</span>
+          <div class="dish-desc">Smashed avocado on toasted rustic bread with chili flakes.</div>
+          <span class="dish-price">₹140</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider">🍴🍴🍴</div>
+
+    <!-- Mains -->
+    <div class="menu-section" data-section="mains">
+      <div class="section-title">Mains</div>
+      <div class="menu-grid">
+        <div class="dish-card gf" data-name="Grilled Salmon" data-desc="Fresh salmon fillet grilled to perfection with herbs." data-price="₹420">
+          <span class="diet-tag">GF</span>
+          <span class="dish-name">Grilled Salmon</span>
+          <div class="dish-desc">Fresh salmon fillet grilled to perfection with herbs.</div>
+          <span class="dish-price">₹420</span>
+        </div>
+        <div class="dish-card vegan special" data-name="Quinoa & Black Bean Bowl" data-desc="Protein-packed quinoa with black beans, corn, and avocado." data-price="₹320">
+          <span class="diet-tag">Vegan</span>
+          <span class="dish-name">Quinoa & Black Bean Bowl</span>
+          <div class="dish-desc">Protein-packed quinoa with black beans, corn, and avocado.</div>
+          <span class="dish-price">₹320</span>
+        </div>
+        <div class="dish-card" data-name="Chicken Alfredo Pasta" data-desc="Creamy Alfredo sauce with grilled chicken and fettuccine." data-price="₹350">
+          <span class="dish-name">Chicken Alfredo Pasta</span>
+          <div class="dish-desc">Creamy Alfredo sauce with grilled chicken and fettuccine.</div>
+          <span class="dish-price">₹350</span>
+        </div>
+        <div class="dish-card gf" data-name="Steak with Garlic Butter" data-desc="Juicy grilled steak topped with garlic herb butter." data-price="₹480">
+          <span class="diet-tag">GF</span>
+          <span class="dish-name">Steak with Garlic Butter</span>
+          <div class="dish-desc">Juicy grilled steak topped with garlic herb butter.</div>
+          <span class="dish-price">₹480</span>
+        </div>
+        <div class="dish-card vegan gf" data-name="Stuffed Bell Peppers" data-desc="Bell peppers stuffed with rice, veggies, and herbs." data-price="₹310">
+          <span class="diet-tag">Vegan</span>
+          <span class="dish-name">Stuffed Bell Peppers</span>
+          <div class="dish-desc">Bell peppers stuffed with rice, veggies, and herbs.</div>
+          <span class="dish-price">₹310</span>
+        </div>
+
+        <!-- 5 extra mains -->
+        <div class="dish-card gf" data-name="Lemon Herb Chicken" data-desc="Oven-roasted chicken breast with lemon and fresh herbs." data-price="₹390">
+          <span class="diet-tag">GF</span>
+          <span class="dish-name">Lemon Herb Chicken</span>
+          <div class="dish-desc">Oven-roasted chicken breast with lemon and fresh herbs.</div>
+          <span class="dish-price">₹390</span>
+        </div>
+        <div class="dish-card vegan" data-name="Vegetable Stir Fry" data-desc="Seasonal veggies stir-fried in a tangy sauce over rice." data-price="₹280">
+          <span class="diet-tag">Vegan</span>
+          <span class="dish-name">Vegetable Stir Fry</span>
+          <div class="dish-desc">Seasonal veggies stir-fried in a tangy sauce over rice.</div>
+          <span class="dish-price">₹280</span>
+        </div>
+        <div class="dish-card" data-name="Beef Lasagna" data-desc="Layers of pasta, beef ragù, cheese, and tomato sauce." data-price="₹430">
+          <span class="dish-name">Beef Lasagna</span>
+          <div class="dish-desc">Layers of pasta, beef ragù, cheese, and tomato sauce.</div>
+          <span class="dish-price">₹430</span>
+        </div>
+        <div class="dish-card gf" data-name="Pan-Seared Tuna" data-desc="Tuna steak seared with sesame seeds and soy glaze." data-price="₹450">
+          <span class="diet-tag">GF</span>
+          <span class="dish-name">Pan-Seared Tuna</span>
+          <div class="dish-desc">Tuna steak seared with sesame seeds and soy glaze.</div>
+          <span class="dish-price">₹450</span>
+        </div>
+        <div class="dish-card vegan gf" data-name="Cauliflower Steak" data-desc="Thick-cut cauliflower grilled and topped with chimichurri." data-price="₹350">
+          <span class="diet-tag">Vegan</span>
+          <span class="dish-name">Cauliflower Steak</span>
+          <div class="dish-desc">Thick-cut cauliflower grilled and topped with chimichurri.</div>
+          <span class="dish-price">₹350</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider">🍴🍴🍴</div>
+
+    <!-- Desserts -->
+    <div class="menu-section" data-section="desserts">
+      <div class="section-title">Desserts</div>
+      <div class="menu-grid">
+        <div class="dish-card" data-name="Classic Tiramisu" data-desc="Coffee-soaked ladyfingers layered with mascarpone cream." data-price="₹220">
+          <span class="dish-name">Classic Tiramisu</span>
+          <div class="dish-desc">Coffee-soaked ladyfingers layered with mascarpone cream.</div>
+          <span class="dish-price">₹220</span>
+        </div>
+        <div class="dish-card vegan gf" data-name="Chia Seed Pudding" data-desc="Creamy coconut milk pudding with chia seeds and berries." data-price="₹190">
+          <span class="diet-tag">Vegan</span>
+          <span class="dish-name">Chia Seed Pudding</span>
+          <div class="dish-desc">Creamy coconut milk pudding with chia seeds and berries.</div>
+          <span class="dish-price">₹190</span>
+        </div>
+        <div class="dish-card gf" data-name="Lemon Sorbet" data-desc="Refreshing lemon sorbet made with fresh lemon juice." data-price="₹160">
+          <span class="diet-tag">GF</span>
+          <span class="dish-name">Lemon Sorbet</span>
+          <div class="dish-desc">Refreshing lemon sorbet made with fresh lemon juice.</div>
+          <span class="dish-price">₹160</span>
+        </div>
+        <div class="dish-card vegan" data-name="Vegan Chocolate Mousse" data-desc="Rich and creamy mousse made with avocado and cocoa." data-price="₹200">
+          <span class="diet-tag">Vegan</span>
+          <span class="dish-name">Vegan Chocolate Mousse</span>
+          <div class="dish-desc">Rich and creamy mousse made with avocado and cocoa.</div>
+          <span class="dish-price">₹200</span>
+        </div>
+        <div class="dish-card" data-name="Carrot Cake" data-desc="Moist carrot cake topped with cream cheese frosting." data-price="₹210">
+          <span class="dish-name">Carrot Cake</span>
+          <div class="dish-desc">Moist carrot cake topped with cream cheese frosting.</div>
+          <span class="dish-price">₹210</span>
+        </div>
+
+        <!-- 5 extra desserts -->
+        <div class="dish-card vegan" data-name="Apple Crumble" data-desc="Warm baked apples with crunchy oat topping." data-price="₹180">
+          <span class="diet-tag">Vegan</span>
+          <span class="dish-name">Apple Crumble</span>
+          <div class="dish-desc">Warm baked apples with crunchy oat topping.</div>
+          <span class="dish-price">₹180</span>
+        </div>
+        <div class="dish-card gf" data-name="Panna Cotta" data-desc="Creamy Italian dessert topped with berry compote." data-price="₹210">
+          <span class="diet-tag">GF</span>
+          <span class="dish-name">Panna Cotta</span>
+          <div class="dish-desc">Creamy Italian dessert topped with berry compote.</div>
+          <span class="dish-price">₹210</span>
+        </div>
+        <div class="dish-card" data-name="Chocolate Lava Cake" data-desc="Warm chocolate cake with a molten center." data-price="₹230">
+          <span class="dish-name">Chocolate Lava Cake</span>
+          <div class="dish-desc">Warm chocolate cake with a molten center.</div>
+          <span class="dish-price">₹230</span>
+        </div>
+        <div class="dish-card vegan gf" data-name="Mango Sorbet" data-desc="Fresh mango sorbet made with natural ingredients." data-price="₹170">
+          <span class="diet-tag">Vegan</span>
+          <span class="dish-name">Mango Sorbet</span>
+          <div class="dish-desc">Fresh mango sorbet made with natural ingredients.</div>
+          <span class="dish-price">₹170</span>
+        </div>
+        <div class="dish-card" data-name="Creme Brulee" data-desc="Classic French custard with caramelized sugar topping." data-price="₹240">
+          <span class="dish-name">Creme Brulee</span>
+          <div class="dish-desc">Classic French custard with caramelized sugar topping.</div>
+          <span class="dish-price">₹240</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="dishModal">
+    <div id="dishModalContent" role="dialog" aria-modal="true" aria-labelledby="modalDishName">
+      <button id="modalCloseBtn" aria-label="Close modal">&times;</button>
+      <h2 id="modalDishName"></h2>
+      <p id="modalDishDesc"></p>
+      <p><strong>Price: </strong><span id="modalDishPrice"></span></p>
+    </div>
+  </div>
+
+  <script>
+    // Modal Elements
+    const modal = document.getElementById('dishModal');
+    const modalName = document.getElementById('modalDishName');
+    const modalDesc = document.getElementById('modalDishDesc');
+    const modalPrice = document.getElementById('modalDishPrice');
+    const closeBtn = document.getElementById('modalCloseBtn');
+
+    // Show modal on dish click
+    document.querySelectorAll('.dish-card').forEach(card => {
+      card.addEventListener('click', () => {
+        modalName.textContent = card.getAttribute('data-name');
+        modalDesc.textContent = card.getAttribute('data-desc');
+        modalPrice.textContent = card.getAttribute('data-price');
+        modal.style.display = 'flex';
+        // Trap focus inside modal (optional enhancement)
+        closeBtn.focus();
+      });
+    });
+
+    // Close modal on close button click
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    // Close modal if click outside modal content
+    modal.addEventListener('click', e => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+
+    // Optional: close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if(e.key === "Escape" && modal.style.display === 'flex') {
+        modal.style.display = 'none';
+      }
+    });
+
+    // Filter buttons functionality (optional)
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.textContent.toLowerCase();
+
+        document.querySelectorAll('.dish-card').forEach(card => {
+          card.style.display = 'none'; // Hide all initially
+
+          if(filter === 'all') {
+            card.style.display = 'flex';
+          } else if(filter === 'vegan') {
+            if(card.classList.contains('vegan')) card.style.display = 'flex';
+          } else if(filter === 'gluten-free') {
+            if(card.classList.contains('gf')) card.style.display = 'flex';
+          } else if(filter === 'mains' || filter === 'desserts') {
+            // Show cards inside the matching section only
+            const section = card.closest('.menu-section');
+            if(section && section.getAttribute('data-section') === filter) {
+              card.style.display = 'flex';
+            }
+          } else {
+            card.style.display = 'flex'; // fallback show all
+          }
+        });
+      });
+    });
+  </script>
+
+<a href="#order" class="order-now-btn">Order Now</a>
+
+</body>
+</html>
